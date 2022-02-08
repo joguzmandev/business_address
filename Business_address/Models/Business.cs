@@ -10,7 +10,9 @@ namespace Business_address.Models
     {
         [Key]
         public int Id { get; set; }
+        [MaxLength(50), Required(ErrorMessage = "Campo {} requerido")]
         public string Name { get; set; }
+        [MaxLength(9), Required(ErrorMessage = "Campo {} requerido")]
         public string RNC { get; set; }
         public string Telefono { get; set; }
         public string Description { get; set; }

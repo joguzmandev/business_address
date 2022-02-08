@@ -10,7 +10,9 @@ namespace Business_address.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required(ErrorMessage ="Campo {} requerido")]
         public string Street { get; set; }
+        [Required(ErrorMessage = "Campo {} requerido")]
         public string Sector { get; set; }
         public string HouseNumber { get; set; }
         public string Reference { get; set; }
