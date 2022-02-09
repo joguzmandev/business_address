@@ -28,14 +28,7 @@ namespace Business_address.Controllers
 
         public async Task<ActionResult> Create()
         {
-            var business =await (from bu in _dbContext.Businesses
-                           select new SelectListItem()
-                           {
-                               Text = bu.Name,
-                               Value = bu.Id.ToString()
-                           }).ToListAsync();
-
-            ViewBag.Businesses = business;
+            ViewBag.Businesses = await GetBusinessList();
             return View();
         }
 
@@ -51,6 +44,76 @@ namespace Business_address.Controllers
             await _dbContext.SaveChangesAsync();
 
             return RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> Edit(int? clientId)
+        {
+            if (clientId.HasValue)
+            {
+                var clientFound = _dbContext.Clients.Where(c => c.Id == clientId).First();
+                if (clientFound != null)
+                {
+                    ViewBag.Businesses = await GetBusinessList();
+                    return View(clientFound);
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(Client client)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(client);
+            }
+
+            _dbContext.Entry(client).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+
+        }
+
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id.HasValue)
+            {
+                var _business = await _dbContext.Clients.FindAsync(id);
+                if (_business != null)
+                {
+                    _dbContext.Entry(_business).State = EntityState.Deleted;
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> AddressesClient(int? clientId)
+        {
+
+            if (!clientId.HasValue)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var addressesClientList = await _dbContext.Addresses.Where(c => c.ClientID == clientId).ToListAsync();
+
+
+            return View(addressesClientList);
+        }
+
+        private async Task<List<SelectListItem>> GetBusinessList()
+        {
+            var businessList =  await (from bu in _dbContext.Businesses
+                                 select new SelectListItem()
+                                 {
+                                     Text = bu.Name,
+                                     Value = bu.Id.ToString()
+                                 }).ToListAsync();
+
+            return businessList;
 
         }
 

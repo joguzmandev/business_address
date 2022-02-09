@@ -55,8 +55,6 @@ namespace Business_address.Controllers
                     await _dbContext.SaveChangesAsync();
                 }
             }
-
-
             return RedirectToAction("Index");
         }
 

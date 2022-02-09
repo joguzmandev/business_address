@@ -57,9 +57,9 @@
             @Html.DisplayFor(modelItem => item.Business.Name)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Editar", "Edit", new { clientId = item.Id }) |
             @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })| 
-            @Html.ActionLink("Direcciones", "Addresses", new { id = item.Id })
+            @Html.ActionLink("Direcciones del Cliente", "AddressesClient", new { clientId = item.Id })
         </td>
     </tr>
 }
@@ -67,6 +67,9 @@
 </table>
 
 }
- else{
-<h1 class="text-info">No existe Cliente(s)</h1>
+else
+{
+    <div class="jumbotron">
+        <h1 class="text-info">No existen registro</h1>
+    </div>
 }
