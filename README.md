@@ -13,7 +13,7 @@
 5. Play al proyecto
 
 
-## Detalles de la solución: in red
+## Detalles de la solución:
 Se desea tener el control de todos los clientes pertenecientes a la empresa X, donde cada cliente puede tener N cantidad de direcciones. 
   
 
