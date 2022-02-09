@@ -7,9 +7,9 @@ using System.Web;
 
 namespace Business_address.Db
 {
-    public class BusinessAddress : DbContext
+    public class BAContextDB : DbContext
     {
-        public BusinessAddress():base(nameOrConnectionString: "BussinessAddressConn")
+        public BAContextDB():base(nameOrConnectionString: "BussinessAddressConn")
         {
 
         }
