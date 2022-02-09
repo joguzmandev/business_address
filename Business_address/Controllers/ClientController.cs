@@ -22,13 +22,37 @@ namespace Business_address.Controllers
         // GET: Client
         public async Task<ActionResult> Index()
         {
-            var clientsList = await _dbContext.Clients.ToListAsync();
+            var clientsList = await _dbContext.Clients.Include("Business").ToListAsync();
             return View(clientsList);
         }
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            var business =await (from bu in _dbContext.Businesses
+                           select new SelectListItem()
+                           {
+                               Text = bu.Name,
+                               Value = bu.Id.ToString()
+                           }).ToListAsync();
+
+            ViewBag.Businesses = business;
             return View();
         }
+
+        [HttpPost]
+        public async Task<ActionResult> Create(Client client)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(client);
+            }
+
+            _dbContext.Clients.Add(client);
+            await _dbContext.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+
+        }
+
     }
 }

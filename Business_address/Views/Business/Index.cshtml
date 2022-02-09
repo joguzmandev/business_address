@@ -42,7 +42,7 @@
         </td>
         <td>
            @* @Html.ActionLink("Editar (Mantenimiento)", "Edit", new { id=item.Id, @class= "text-warning" }) |*@
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }) | 
             @Html.ActionLink("Clientes Asociado", "BusinessClients", new { id = item.Id })
         </td>
     </tr>

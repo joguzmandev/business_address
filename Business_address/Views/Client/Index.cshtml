@@ -9,6 +9,10 @@
 <p>
     @Html.ActionLink("Nuevo Cliente", "Create")
 </p>
+
+
+@if(Model.Count() > 0) { 
+
 <table class="table">
     <tr>
         <th>
@@ -50,14 +54,19 @@
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BusinessID)
+            @Html.DisplayFor(modelItem => item.Business.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })| 
+            @Html.ActionLink("Direcciones", "Addresses", new { id = item.Id })
         </td>
     </tr>
 }
 
 </table>
+
+}
+ else{
+<h1 class="text-info">No existe Cliente(s)</h1>
+}
