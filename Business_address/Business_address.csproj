@@ -182,6 +182,10 @@
     <Compile Include="Migrations\202202082247590_FirstMigration_Created.designer.cs">
       <DependentUpon>202202082247590_FirstMigration_Created.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202090042298_AddClientToAddressRelationship.cs" />
+    <Compile Include="Migrations\202202090042298_AddClientToAddressRelationship.Designer.cs">
+      <DependentUpon>202202090042298_AddClientToAddressRelationship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Business.cs" />
@@ -250,6 +254,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202202082247590_FirstMigration_Created.resx">
       <DependentUpon>202202082247590_FirstMigration_Created.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202090042298_AddClientToAddressRelationship.resx">
+      <DependentUpon>202202090042298_AddClientToAddressRelationship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
