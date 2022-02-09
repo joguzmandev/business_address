@@ -26,8 +26,16 @@ namespace Business_address.Controllers
             return View(addressList);
         }
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            var clientsList = await (from client in _dbContext.Clients
+                                     select new SelectListItem()
+                                     {
+                                         Text = client.Name,
+                                         Value = client.Id.ToString()
+                                     }).ToListAsync();
+
+            ViewBag.ClientsList = clientsList;
             return View();
         }
 
